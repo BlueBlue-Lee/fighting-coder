@@ -47,6 +47,10 @@ var root = &TreeNode{
 	},
 }
 
+func TestGetMaxSum(t *testing.T) {
+	fmt.Printf("%v", GetMaxSum(root))
+}
+
 func TestGetLongestPath(t *testing.T) {
 	fmt.Printf("%v", GetLongestPath(root))
 }

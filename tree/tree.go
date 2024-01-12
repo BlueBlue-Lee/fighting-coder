@@ -1,6 +1,9 @@
 package tree
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type TreeNode struct {
 	Val   int
@@ -157,10 +160,6 @@ func getHeight(root *TreeNode) int {
 	return bigger + 1
 }
 
-func GetMaxSum(root *TreeNode) int {
-	return 0
-}
-
 func ZigzagLevelTraversal(root *TreeNode) []int {
 	var result []int
 	if root == nil {
@@ -198,8 +197,39 @@ func ZigzagLevelTraversal(root *TreeNode) []int {
 	return result
 }
 
-func (t *TreeNode) BinarySearch(target int) {
+var maxSum = math.MinInt
 
+func GetMaxSum(root *TreeNode) int {
+	getMaxSum(root)
+	return maxSum
+}
+
+func getMaxSum(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	left := GetMaxSum(root.Left)
+	right := GetMaxSum(root.Right)
+	sum := root.Val
+	if left > 0 {
+		sum += left
+	}
+	if right > 0 {
+		sum += right
+	}
+	if sum > maxSum {
+		maxSum = sum
+	}
+	return sum
+}
+
+func IsBalanced(root *TreeNode) bool {
+	return false
+}
+
+func BinarySearch(root *TreeNode, target int) bool {
+	// todo
+	return false
 }
 
 func (t *TreeNode) MaxDepth() int {
